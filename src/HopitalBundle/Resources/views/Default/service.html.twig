@@ -1,0 +1,12 @@
+{% extends 'HopitalBundle:Default:base.html.twig' %}
+{% block corps %}
+<h2>Les services</h2>
+<table> 
+	<tr><th>Nom</th></tr>
+	{% for service in lesServices %}
+	<tr>
+		<td>{{service.getLibelle()}}</td>
+	</tr>
+	{% endfor %}
+</table>
+{% endblock %}

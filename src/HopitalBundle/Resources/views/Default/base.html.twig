@@ -1,0 +1,14 @@
+{% extends'::base.html.twig' %}
+{% block body %}
+<h1>Hopital</h1>
+<nav>
+ 	<ul>
+ 			<li><a href="{{path('hopital_presentation',{})}}">Présentation</a></li>
+ 			<li><a href="{{path('hopital_patient',{})}}">Afficher patients</a></li>
+ 			<li><a href="{{path('hopital_ajouterPatient',{})}}">Ajouter patient</a></li>
+ 			<li><a href="{{path('hopital_service',{})}}">Afficher services</a></li>
+ 	</ul>
+ </nav>
+ <nav id="corps">
+{% block corps %}{% endblock %}
+{% endblock %}

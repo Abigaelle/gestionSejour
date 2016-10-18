@@ -1,0 +1,23 @@
+hopital_homepage:
+    path:     /accueil
+    defaults: { _controller: HopitalBundle:Default:index }
+
+hopital_presentation:
+    path:     /presentation
+    defaults: { _controller: HopitalBundle:Default:presentation }
+
+hopital_ajouterPatient:
+    path:     /ajouterPatient
+    defaults: { _controller: HopitalBundle:Default:ajouterPatient }
+
+hopital_patient:
+    path:     /patient
+    defaults: { _controller: HopitalBundle:Default:patient }
+
+hopital_modifierPatient:
+    path:     /modifierPatient
+    defaults: { _controller: HopitalBundle:Default:modifierPatient }
+
+hopital_service:
+    path:     /service
+    defaults: { _controller: HopitalBundle:Default:service }
