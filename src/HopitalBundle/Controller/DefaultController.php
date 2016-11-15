@@ -5,6 +5,8 @@ namespace HopitalBundle\Controller;
 use HopitalBundle\Entity\Patient;
 use HopitalBundle\Entity\Service;
 use HopitalBundle\Entity\Chambre;
+use HopitalBundle\Entity\Lit;
+use HopitalBundle\Entity\Sejour;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
@@ -45,10 +47,10 @@ class DefaultController extends Controller
         $formBuilder->add('nom','text',array('label'=>'Saisir le nom du patient :'));
         $formBuilder->add('prenom','text',array('label'=>'Saisir le prénom du patient :'));
         $formBuilder->add('dateNaissance','date');
-        $formBuilder->add('dateArriver','date');
-        $formBuilder->add('dateSorti','date');
+        //$formBuilder->add('sejours','entity',array('class'=>'HopitalBundle:Sejour','property'=>'dateArriver'));
         $formBuilder->add('le_service','entity',array('class'=>'HopitalBundle:Service','property'=>'libelle','expanded'=>true));
-        $formBuilder->add('chambre','entity',array('class'=>'HopitalBundle:Chambre','property'=>'codeLit'));
+        $formBuilder->add('chambre','entity',array('class'=>'HopitalBundle:Chambre','property'=>'libelle'));
+        $formBuilder->add('lit','entity',array('class'=>'HopitalBundle:Lit','property'=>'libelle'));
         $formBuilder->add('sauvegarder','submit');
         $form=$formBuilder->getForm();
         if ($request->getMethod()=='POST')
@@ -75,10 +77,9 @@ class DefaultController extends Controller
         $formBuilder->add('nom','text',array('label'=>'Saisir le nom du patient :'));
         $formBuilder->add('prenom','text',array('label'=>'Saisir le prénom du patient :'));
         $formBuilder->add('dateNaissance','date');
-        $formBuilder->add('dateArriver','date');
-        $formBuilder->add('dateSorti','date');
         $formBuilder->add('le_service','entity',array('class'=>'HopitalBundle:Service','property'=>'libelle','expanded'=>true));
-        $formBuilder->add('chambre','entity',array('class'=>'HopitalBundle:Chambre','property'=>'codeLit'));
+        $formBuilder->add('chambre','entity',array('class'=>'HopitalBundle:Chambre','property'=>'libelle'));
+        $formBuilder->add('lit','entity',array('class'=>'HopitalBundle:Lit','property'=>'libelle'));
         $formBuilder->add('sauvegarder','submit'); 
         $form=$formBuilder->getForm();
         if ($request->getMethod()=='POST')

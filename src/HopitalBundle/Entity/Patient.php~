@@ -13,6 +13,11 @@ use Doctrine\ORM\Mapping as ORM;
 class Patient
 {
     /**
+     * @ORM\ManyToMany(targetEntity="Sejour")
+     */
+    private $sejours;
+
+    /**
      * @var Service $leService
      *
      * @ORM\ManyToOne(targetEntity="Service")
@@ -20,10 +25,14 @@ class Patient
     private $leService;
 
     /**
-     *
-     * @ORM\ManyToOne(targetEntity="Chambre", inversedBy="patients")
-     */
+    * @ORM\OneToOne(targetEntity="Chambre")
+    */
     private $chambre;
+
+    /**
+    * @ORM\OneToOne(targetEntity="Lit")
+    */
+    private $lit;
 
     /**
      * @var int
@@ -54,20 +63,6 @@ class Patient
      * @ORM\Column(name="dateNaissance", type="datetime")
      */
     private $dateNaissance;
-
-    /**
-     * @var \DateTime
-     *
-     * @ORM\Column(name="dateArriver", type="datetime")
-     */
-    private $dateArriver;
-
-    /**
-     * @var \DateTime
-     *
-     * @ORM\Column(name="dateSorti", type="datetime")
-     */
-    private $dateSorti;
 
     /**
      * Get id
@@ -176,50 +171,50 @@ class Patient
     }
 
     /**
-     * Set dateArriver
+     * Set chambre
      *
-     * @param \DateTime $dateArriver
+     * @param \HopitalBundle\Entity\Chambre $chambre
      *
      * @return Patient
      */
-    public function setDateArriver($dateArriver)
+    public function setChambre(\HopitalBundle\Entity\Chambre $chambre = null)
     {
-        $this->dateArriver = $dateArriver;
+        $this->chambre = $chambre;
 
         return $this;
     }
 
     /**
-     * Get dateArriver
+     * Get chambre
      *
-     * @return \DateTime
+     * @return \HopitalBundle\Entity\Chambre
      */
-    public function getDateArriver()
+    public function getChambre()
     {
-        return $this->dateArriver;
+        return $this->chambre;
     }
 
     /**
-     * Set dateSorti
+     * Set lit
      *
-     * @param \DateTime $dateSorti
+     * @param \HopitalBundle\Entity\Lit $lit
      *
      * @return Patient
      */
-    public function setDateSorti($dateSorti)
+    public function setLit(\HopitalBundle\Entity\Lit $lit = null)
     {
-        $this->dateSorti = $dateSorti;
+        $this->lit = $lit;
 
         return $this;
     }
 
     /**
-     * Get dateSorti
+     * Get lit
      *
-     * @return \DateTime
+     * @return \HopitalBundle\Entity\Lit
      */
-    public function getDateSorti()
+    public function getLit()
     {
-        return $this->dateSorti;
+        return $this->lit;
     }
 }

@@ -13,6 +13,11 @@ use Doctrine\ORM\Mapping as ORM;
 class Patient
 {
     /**
+     * @ORM\ManyToMany(targetEntity="Sejour")
+     */
+    private $sejours;
+
+    /**
      * @var Service $leService
      *
      * @ORM\ManyToOne(targetEntity="Service")
@@ -20,10 +25,14 @@ class Patient
     private $leService;
 
     /**
-     *
-     * @ORM\ManyToOne(targetEntity="Chambre", inversedBy="patients")
-     */
+    * @ORM\OneToOne(targetEntity="Chambre")
+    */
     private $chambre;
+
+    /**
+    * @ORM\OneToOne(targetEntity="Lit")
+    */
+    private $lit;
 
     /**
      * @var int
@@ -54,20 +63,6 @@ class Patient
      * @ORM\Column(name="dateNaissance", type="datetime")
      */
     private $dateNaissance;
-
-    /**
-     * @var \DateTime
-     *
-     * @ORM\Column(name="dateArriver", type="datetime")
-     */
-    private $dateArriver;
-
-    /**
-     * @var \DateTime
-     *
-     * @ORM\Column(name="dateSorti", type="datetime")
-     */
-    private $dateSorti;
 
     /**
      * Get id
@@ -176,54 +171,6 @@ class Patient
     }
 
     /**
-     * Set dateArriver
-     *
-     * @param \DateTime $dateArriver
-     *
-     * @return Patient
-     */
-    public function setDateArriver($dateArriver)
-    {
-        $this->dateArriver = $dateArriver;
-
-        return $this;
-    }
-
-    /**
-     * Get dateArriver
-     *
-     * @return \DateTime
-     */
-    public function getDateArriver()
-    {
-        return $this->dateArriver;
-    }
-
-    /**
-     * Set dateSorti
-     *
-     * @param \DateTime $dateSorti
-     *
-     * @return Patient
-     */
-    public function setDateSorti($dateSorti)
-    {
-        $this->dateSorti = $dateSorti;
-
-        return $this;
-    }
-
-    /**
-     * Get dateSorti
-     *
-     * @return \DateTime
-     */
-    public function getDateSorti()
-    {
-        return $this->dateSorti;
-    }
-
-    /**
      * Set chambre
      *
      * @param \HopitalBundle\Entity\Chambre $chambre
@@ -245,5 +192,70 @@ class Patient
     public function getChambre()
     {
         return $this->chambre;
+    }
+
+    /**
+     * Set lit
+     *
+     * @param \HopitalBundle\Entity\Lit $lit
+     *
+     * @return Patient
+     */
+    public function setLit(\HopitalBundle\Entity\Lit $lit = null)
+    {
+        $this->lit = $lit;
+
+        return $this;
+    }
+
+    /**
+     * Get lit
+     *
+     * @return \HopitalBundle\Entity\Lit
+     */
+    public function getLit()
+    {
+        return $this->lit;
+    }
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->sejours = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+    /**
+     * Add sejour
+     *
+     * @param \HopitalBundle\Entity\Sejour $sejour
+     *
+     * @return Patient
+     */
+    public function addSejour(\HopitalBundle\Entity\Sejour $sejour)
+    {
+        $this->sejours[] = $sejour;
+
+        return $this;
+    }
+
+    /**
+     * Remove sejour
+     *
+     * @param \HopitalBundle\Entity\Sejour $sejour
+     */
+    public function removeSejour(\HopitalBundle\Entity\Sejour $sejour)
+    {
+        $this->sejours->removeElement($sejour);
+    }
+
+    /**
+     * Get sejours
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getSejours()
+    {
+        return $this->sejours;
     }
 }

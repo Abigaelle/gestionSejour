@@ -12,12 +12,6 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class Chambre
 {
-    /**
-     * 
-     *
-     * @ORM\OneToMany(targetEntity="Patient", mappedBy="chambre")
-     */
-    private $patients;
 
     /**
      * @var int
@@ -29,11 +23,17 @@ class Chambre
     private $id;
 
     /**
-     * @var int
+     * @var string
      *
-     * @ORM\Column(name="codeLit", type="integer")
+     * @ORM\Column(name="libelle", type="string", length=255)
      */
-    private $codeLit;
+    private $libelle;
+
+    /**
+     * @var int
+     * @ORM\Column(name="nbLits", type="integer")
+     */
+    private $nbLits;
 
     /**
      * Get id
@@ -46,68 +46,26 @@ class Chambre
     }
 
     /**
-     * Constructor
-     */
-    public function __construct()
-    {
-        $this->patients = new \Doctrine\Common\Collections\ArrayCollection();
-    }
-
-    /**
-     * Add patient
+     * Set nbLits
      *
-     * @param \HopitalBundle\Entity\Patient $patient
+     * @param integer $nbLits
      *
      * @return Chambre
      */
-    public function addPatient(\HopitalBundle\Entity\Patient $patient)
+    public function setNbLits($nbLits)
     {
-        $this->patients[] = $patient;
+        $this->nbLits = $nbLits;
 
         return $this;
     }
 
     /**
-     * Remove patient
-     *
-     * @param \HopitalBundle\Entity\Patient $patient
-     */
-    public function removePatient(\HopitalBundle\Entity\Patient $patient)
-    {
-        $this->patients->removeElement($patient);
-    }
-
-    /**
-     * Get patients
-     *
-     * @return \Doctrine\Common\Collections\Collection
-     */
-    public function getPatients()
-    {
-        return $this->patients;
-    }
-
-    /**
-     * Set codeLit
-     *
-     * @param integer $codeLit
-     *
-     * @return Chambre
-     */
-    public function setCodeLit($codeLit)
-    {
-        $this->codeLit = $codeLit;
-
-        return $this;
-    }
-
-    /**
-     * Get codeLit
+     * Get nbLits
      *
      * @return integer
      */
-    public function getCodeLit()
+    public function getNbLits()
     {
-        return $this->codeLit;
+        return $this->nbLits;
     }
 }
